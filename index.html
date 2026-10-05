@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tiket Hadir - Absensi Pemrograman Web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1>Tiket Hadir</h1>
+  <p>Absensi Pemrograman Web</p>
+  <nav class="tabs" role="tablist">
+    <button class="tab on" data-tab="mhs" role="tab">Saya mahasiswa</button>
+    <button class="tab" data-tab="dsn" role="tab">Saya dosen</button>
+  </nav>
+</header>
+
+<main>
+  <!-- MAHASISWA -->
+  <section id="mhs" class="panel">
+    <form id="formAbsen" class="ticket">
+      <div class="main">
+        <h2>Isi kehadiran</h2>
+        <label>Kode sesi dari dosen
+          <input id="kode" class="code-input" maxlength="5" placeholder="A7K2Q" required autocomplete="off">
+        </label>
+        <label>NIM
+          <input id="nim" inputmode="numeric" placeholder="22312345" required>
+        </label>
+        <label>Nama lengkap
+          <input id="nama" placeholder="Nama sesuai KRS" required>
+        </label>
+      </div>
+      <div class="stub">
+        <fieldset>
+          <legend>Status</legend>
+          <label class="chip"><input type="radio" name="status" value="Hadir" checked><span>Hadir</span></label>
+          <label class="chip"><input type="radio" name="status" value="Izin"><span>Izin</span></label>
+          <label class="chip"><input type="radio" name="status" value="Sakit"><span>Sakit</span></label>
+        </fieldset>
+        <button class="btn" type="submit">Kirim kehadiran</button>
+      </div>
+    </form>
+    <p id="msgMhs" class="msg" role="status"></p>
+  </section>
+
+  <!-- DOSEN -->
+  <section id="dsn" class="panel" hidden>
+    <form id="formPin" class="card">
+      <h2>Masuk sebagai dosen</h2>
+      <label>PIN dosen <input id="pin" type="password" required></label>
+      <button class="btn" type="submit">Masuk</button>
+      <p id="msgPin" class="msg" role="status"></p>
+    </form>
+
+    <div id="dosenArea" hidden>
+      <form id="formSesi" class="card row">
+        <label>Mata kuliah <input id="mk" value="Pemrograman Web" required></label>
+        <label class="narrow">Pertemuan ke <input id="pert" type="number" min="1" max="16" value="1" required></label>
+        <button class="btn" type="submit">Buat sesi baru</button>
+      </form>
+
+      <div class="split">
+        <aside class="card">
+          <h2>Sesi saya</h2>
+          <ul id="listSesi" class="sesi-list"></ul>
+        </aside>
+        <article class="card">
+          <div id="rekapKosong">Pilih sesi di sebelah kiri untuk melihat siapa saja yang sudah hadir.</div>
+          <div id="rekap" hidden>
+            <div class="rekap-head">
+              <div>
+                <p id="rkJudul" class="judul"></p>
+                <p class="kode-besar" id="rkKode"></p>
+              </div>
+              <div class="aksi">
+                <button class="btn small ghost" id="btnToggle"></button>
+                <button class="btn small" id="btnCsv">Unduh CSV</button>
+              </div>
+            </div>
+            <p id="rkTotal" class="total"></p>
+            <div class="scroll">
+              <table>
+                <thead><tr><th>NIM</th><th>Nama</th><th>Status</th><th>Jam</th></tr></thead>
+                <tbody id="rkBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

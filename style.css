@@ -1,0 +1,67 @@
+:root{
+  --paper:#EAF0F7; --ink:#14213D; --blue:#2F5BFF; --card:#FFFFFF;
+  --hadir:#12A579; --izin:#E09B00; --sakit:#D64545; --line:#C8D3E3;
+  --head:'Bricolage Grotesque',system-ui,sans-serif;
+  --body:'IBM Plex Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.5}
+.top{background:var(--ink);color:#fff;padding:32px 20px 0;text-align:center}
+.top h1{font:800 clamp(2rem,6vw,3.2rem)/1 var(--head);margin:0}
+.top p{margin:6px 0 20px;color:#B8C4DD}
+.tabs{display:flex;justify-content:center;gap:6px}
+.tab{font:500 1rem var(--body);padding:10px 22px;border:0;border-radius:12px 12px 0 0;background:#24345a;color:#B8C4DD;cursor:pointer}
+.tab.on{background:var(--paper);color:var(--ink)}
+main{max-width:920px;margin:0 auto;padding:28px 16px 60px}
+h2{font:800 1.4rem var(--head);margin:0 0 14px}
+label{display:block;font-weight:500;font-size:.92rem;margin-bottom:12px}
+input{display:block;width:100%;margin-top:5px;padding:11px 12px;border:2px solid var(--line);border-radius:10px;font:400 1rem var(--body);background:#fff;color:var(--ink)}
+input:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.code-input{font:800 2rem var(--head);letter-spacing:.35em;text-transform:uppercase;text-align:center}
+
+/* tiket */
+.ticket{display:grid;grid-template-columns:1fr 250px;background:var(--card);border-radius:18px;box-shadow:0 10px 30px rgba(20,33,61,.12);position:relative}
+.ticket .main{padding:26px}
+.ticket .stub{padding:26px;border-left:3px dashed var(--line);display:flex;flex-direction:column;justify-content:space-between;gap:16px}
+.ticket::before,.ticket::after{content:"";position:absolute;right:236px;width:28px;height:28px;border-radius:50%;background:var(--paper)}
+.ticket::before{top:-14px}.ticket::after{bottom:-14px}
+fieldset{border:0;padding:0;margin:0}
+legend{font-weight:500;font-size:.92rem;margin-bottom:8px;padding:0}
+.chip{display:inline-block;margin:0 6px 8px 0}
+.chip input{position:absolute;opacity:0;width:0}
+.chip span{display:inline-block;padding:8px 16px;border:2px solid var(--line);border-radius:99px;cursor:pointer}
+.chip input:checked+span{background:var(--blue);border-color:var(--blue);color:#fff}
+.chip input:focus-visible+span{outline:3px solid var(--blue);outline-offset:2px}
+
+.btn{font:800 1rem var(--head);background:var(--blue);color:#fff;border:0;border-radius:12px;padding:13px 18px;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.small{padding:8px 14px;font-size:.9rem}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.msg{margin:14px 0 0;font-weight:500;min-height:1.4em}
+.msg.ok{color:var(--hadir)}.msg.err{color:var(--sakit)}
+
+.card{background:var(--card);border-radius:16px;padding:22px;box-shadow:0 6px 20px rgba(20,33,61,.08);margin-bottom:18px}
+.row{display:flex;gap:14px;align-items:end;flex-wrap:wrap}
+.row label{flex:1;min-width:180px;margin:0}.row .narrow{flex:0 0 120px;min-width:100px}
+.split{display:grid;grid-template-columns:260px 1fr;gap:18px;align-items:start}
+.sesi-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.sesi-list button{width:100%;text-align:left;padding:10px 12px;border:2px solid var(--line);border-radius:10px;background:#fff;font:400 .95rem var(--body);cursor:pointer;color:var(--ink)}
+.sesi-list button.on{border-color:var(--blue);background:#EEF2FF}
+.sesi-list small{display:block;color:#5B6B8A}
+.rekap-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.judul{margin:0;font-weight:500}
+.kode-besar{margin:0;font:800 2.6rem/1.1 var(--head);letter-spacing:.2em;color:var(--blue)}
+.aksi{display:flex;gap:8px;align-items:start}
+.total{margin:10px 0}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.93rem}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+.st{font-weight:500}.st.Hadir{color:var(--hadir)}.st.Izin{color:var(--izin)}.st.Sakit{color:var(--sakit)}
+
+@media(max-width:720px){
+  .ticket{grid-template-columns:1fr}
+  .ticket .stub{border-left:0;border-top:3px dashed var(--line)}
+  .ticket::before,.ticket::after{display:none}
+  .split{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
